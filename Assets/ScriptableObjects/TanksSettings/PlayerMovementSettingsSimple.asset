@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6d3734f4474323beb5feb509e1ce85, type: 3}
+  m_Name: PlayerMovementSettingsSimple
+  m_EditorClassIdentifier: 
+  _speed:
+    _linear: 5
+    _angular: 20
+  _control:
+    _axis1Name: Vertical
+    _axis2Name: Horizontal
+    _movementKeys: 07010000040100000801000005010000
+    _fireKey: 323

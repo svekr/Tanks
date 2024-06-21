@@ -12,6 +12,10 @@ namespace com.Tanks.TanksBattle.Controllers.Tank.Movement {
             var axis1 = _arguments.MovementInput.Axis1;
             var axis2 = _arguments.MovementInput.Axis2;
 
+            if (axis1 < 0f) {
+                axis2 *= -1;
+            }
+
             _arguments.PhysicsProvider.Position += modelRotation * Vector3.forward * axis1 * linearSpeed;
             _arguments.PhysicsProvider.Rotation = modelRotation * Quaternion.Euler(0f, axis2 * angularSpeed, 0f);
         }

@@ -3,7 +3,6 @@ using UnityEngine;
 namespace com.Tanks.Managers.SceneManagement {
     abstract public class SceneController : MonoBehaviour {
         [SerializeField] private string _location;
-        [SerializeField] private NextSceneStarter _nextSceneStarter;
 
         public string Location => _location;
 

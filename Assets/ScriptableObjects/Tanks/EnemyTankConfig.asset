@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d6e4a3723b47d5ab4ab6389e042ea6, type: 3}
+  m_Name: EnemyTankConfig
+  m_EditorClassIdentifier: 
+  _tankView: {fileID: 3643704204108657212, guid: e760ef5293de91b42ae160fd7ce97835,
+    type: 3}
+  _movement:
+    _movementType: 1
+    _velocity:
+      _linear: 5
+      _angular: 20

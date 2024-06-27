@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d6e4a3723b47d5ab4ab6389e042ea6, type: 3}
   m_Name: EnemyTankConfig
   m_EditorClassIdentifier: 
-  _tankView: {fileID: 3643704204108657212, guid: e760ef5293de91b42ae160fd7ce97835,
+  _tankView: {fileID: 6081855910472013766, guid: a9b057d6576d91847b3dba838361de65,
     type: 3}
   _movement:
     _movementType: 1

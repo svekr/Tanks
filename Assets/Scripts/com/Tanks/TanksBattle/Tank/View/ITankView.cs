@@ -1,9 +1,7 @@
-﻿using UnityEngine;
+﻿using com.Tanks.TanksBattle.Game.GameEntity;
 
 namespace com.Tanks.TanksBattle.Tank.View {
-    public interface ITankView {
-        Transform Transform { get; }
+    public interface ITankView : IGameEntityView {
 
-        void Destroy();
     }
 }

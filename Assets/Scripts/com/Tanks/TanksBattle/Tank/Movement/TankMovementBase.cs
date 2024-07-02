@@ -1,6 +1,5 @@
 ﻿using com.Tanks.TanksBattle.Tank.Movement.Input;
 using com.Tanks.TanksBattle.Tank.Physics;
-using UnityEngine;
 
 namespace com.Tanks.TanksBattle.Tank.Movement {
     abstract public class TankMovementBase<TInput> : ITankMovement where TInput : ITankMovementInput {
@@ -29,11 +28,17 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
         }
 
         protected TankMovementBase(ITankPhysics model, TInput input, ITankVelocitySettings velocity) {
-            _model = model;
             _input = input;
             _velocity = velocity;
-            _model.AddUpdatable(this);
+            SetPhysicsModel(model);
             IsActive = true;
+        }
+
+        public void SetPhysicsModel(ITankPhysics model) {
+            if (model == null || model == _model) return;
+            _model?.RemoveUpdatable(this);
+            _model = model;
+            _model.AddUpdatable(this);
         }
 
         public bool DoUpdate(float deltaTime) {
@@ -43,10 +48,6 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
             return !_isDestroyed;
         }
 
-        public void Move(Vector3 position, Quaternion rotation) {
-            _model?.Move(position, rotation);
-        }
-
         public void Destroy() {
             if (_isDestroyed) return;
             if (_input != null) {
@@ -54,6 +55,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
                 _input = default;
             }
             if (_model != null) {
+                _model.RemoveUpdatable(this);
                 _model = default;
             }
             _isDestroyed = true;

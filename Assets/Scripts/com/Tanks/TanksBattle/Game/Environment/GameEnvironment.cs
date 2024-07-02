@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using com.Tanks.TanksBattle.Game.Environment.Spawn;
+using com.Tanks.TanksBattle.Game.GameEntity;
 using UnityEngine;
 
 namespace com.Tanks.TanksBattle.Game.Environment {
-    public class GameEnvironment : MonoBehaviour {
+    public class GameEnvironment : MonoBehaviour, IGameEnvironment {
         [SerializeField] private SpawnZoneProvider[] _playerSpawnZones;
         [SerializeField] private SpawnZoneProvider[] _enemiesSpawnZones;
 
         private SpawnZone[] _spawnZonesPlayer;
         private SpawnZone[] _spawnZonesEnemy;
 
-        public SpawnZone[] SpawnZonesPlayer => _spawnZonesPlayer ??= GetSpawnZones(_playerSpawnZones);
-        public SpawnZone[] SpawnZonesEnemy => _spawnZonesEnemy ??= GetSpawnZones(_enemiesSpawnZones);
+        public SpawnZone[] GetSpawnZones(EntityType entityType) {
+            switch (entityType) {
+                case EntityType.Player:
+                    return _spawnZonesPlayer ??= GetSpawnZones(_playerSpawnZones);
+                case EntityType.Enemy:
+                    return _spawnZonesEnemy ??= GetSpawnZones(_enemiesSpawnZones);
+                default:
+                    return null;
+            }
+        }
 
         private SpawnZone[] GetSpawnZones(IReadOnlyCollection<SpawnZoneProvider> spawnObjects) {
             if (spawnObjects == null || spawnObjects.Count == 0) return null;
@@ -22,10 +31,7 @@ namespace com.Tanks.TanksBattle.Game.Environment {
 
             foreach (var spawnObject in spawnObjects) {
                 if (spawnObject == null) continue;
-                var center = spawnObject.transform.position;
-                var size = spawnObject.transform.localScale;
-                var spawnZone = new SpawnZone(center, size);
-                result[counter] = spawnZone;
+                result[counter] = spawnObject.GetSpawnZone();
                 counter++;
             }
 

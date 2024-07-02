@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using com.Tanks.TanksBattle.Tank.Physics;
 using Utils.Updatable;
 
 namespace com.Tanks.TanksBattle.Tank.Movement {
@@ -6,7 +6,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
         TankMovementType MovementType { get; }
         bool IsActive { get; set; }
 
-        void Move(Vector3 position, Quaternion rotation);
+        void SetPhysicsModel(ITankPhysics model);
         void Destroy();
     }
 }

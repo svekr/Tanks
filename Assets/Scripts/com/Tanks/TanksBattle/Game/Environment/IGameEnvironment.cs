@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using com.Tanks.TanksBattle.Game.Environment.Spawn;
+using com.Tanks.TanksBattle.Game.GameEntity;
 
 namespace com.Tanks.TanksBattle.Game.Environment {
     public interface IGameEnvironment {
-        Bounds[] GetPlayerSpawnZones { get; }
-        Bounds[] GetEnemiesSpawnZones { get; }
+        SpawnZone[] GetSpawnZones(EntityType entityType);
     }
 }

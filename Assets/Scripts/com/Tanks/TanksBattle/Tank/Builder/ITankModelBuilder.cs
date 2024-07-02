@@ -1,4 +1,5 @@
 ﻿using com.Tanks.TanksBattle.Game.GameEntity;
+using com.Tanks.TanksBattle.Tank.Contacts;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
 using com.Tanks.TanksBattle.Tank.Physics;
@@ -10,8 +11,8 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
         EntityType EntityType { get; }
 
         ITankModel BuildTank(string name, ITankView view, ITankSettings settings);
-
         ITankPhysics BuildPhysics(ITankModel tank);
+        ITankContactor BuildContactor(ITankModel tank);
         ITankMovement BuildMovement(ITankPhysics physics, ITankMovementSettings settings, ITankEventProvider eventProvider);
     }
 }

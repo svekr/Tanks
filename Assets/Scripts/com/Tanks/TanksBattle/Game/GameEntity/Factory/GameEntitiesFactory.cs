@@ -49,9 +49,9 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
         }
 
         private ITankModel BuildTank(string name, TankConfig config, ITankModelBuilder builder) {
-            var view = UnityEngine.Object.Instantiate(config.TankView, _context.GameContainer);
+            var view = UnityEngine.Object.Instantiate(config.Prefab, _context.GameContainer);
             view.name = name;
-            return builder.BuildTank(name, view, config);
+            return builder.BuildTank(name, view, config.GetSettings());
         }
     }
 }

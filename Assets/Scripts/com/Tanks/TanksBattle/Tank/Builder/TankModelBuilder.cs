@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using com.Tanks.TanksBattle.Game.GameEntity;
+using com.Tanks.TanksBattle.Tank.Contacts;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
 using com.Tanks.TanksBattle.Tank.Physics;
@@ -22,6 +23,10 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
 
         public ITankPhysics BuildPhysics(ITankModel tank) {
             return new TankPhysicsUnityRigidbody(tank.View.Transform);
+        }
+
+        public ITankContactor BuildContactor(ITankModel tank) {
+            return new TankContactorUnity(tank.View.Transform, tank.EventProvider, Entities);
         }
 
         abstract public ITankMovement BuildMovement(ITankPhysics physics, ITankMovementSettings settings,

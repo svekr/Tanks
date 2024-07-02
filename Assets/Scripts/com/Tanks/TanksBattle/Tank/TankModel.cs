@@ -1,5 +1,6 @@
 ﻿using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Tank.Builder;
+using com.Tanks.TanksBattle.Tank.Contacts;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
 using com.Tanks.TanksBattle.Tank.Physics;
@@ -19,6 +20,7 @@ namespace com.Tanks.TanksBattle.Tank {
         private ITankModelBuilder _builder;
         private ITankPhysics _physicsModel;
         private ITankMovement _movement;
+        private ITankContactor _contactor;
 
         public TankModel(EntityType type, string name, ITankView view, ITankSettings settings, ITankModelBuilder builder) {
             Type = type;
@@ -28,9 +30,12 @@ namespace com.Tanks.TanksBattle.Tank {
             _builder = builder;
 
             EventProvider = new TankEventProvider();
+            EventProvider.OnContact += OnContact;
+            EventProvider.OnChangeMovementType += OnChangeMovementType;
 
             SetPhysics(_builder.BuildPhysics(this));
             SetMovement(_builder.BuildMovement(_physicsModel, _settings.Movement, EventProvider));
+            _contactor = _builder.BuildContactor(this);
         }
 
         public bool DoUpdate(float deltaTime) {
@@ -44,9 +49,10 @@ namespace com.Tanks.TanksBattle.Tank {
         public void Destroy() {
             View.Destroy();
             View = null;
-            EventProvider?.Destroy();
+            EventProvider.Destroy();
             _movement?.Destroy();
             _physicsModel?.Destroy();
+            _contactor?.Destroy();
         }
 
         private void SetPhysics(ITankPhysics physicsModel) {
@@ -61,6 +67,18 @@ namespace com.Tanks.TanksBattle.Tank {
             _movement?.Destroy();
             _movement = movement;
             _movement.SetPhysicsModel(_physicsModel);
+        }
+
+        private void OnContact(IGameEntity other) {
+            if (other == null) return;
+            if (other.Type == EntityType.Player) {
+                Destroy();
+            }
+        }
+
+        private void OnChangeMovementType(TankMovementType type) {
+            _settings.Movement.MovementType = type;
+            SetMovement(_builder.BuildMovement(_physicsModel, _settings.Movement, EventProvider));
         }
     }
 }

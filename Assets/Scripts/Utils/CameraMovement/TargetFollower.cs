@@ -41,7 +41,7 @@ namespace Utils.CameraMovement {
                     castDirection,
                     out var hit,
                     castDistance,
-                    _layerMask,
+                    _layerMask.value,
                     QueryTriggerInteraction.Ignore
                     )) {
                 _position = hit.point + hit.normal * _colliderRadius;

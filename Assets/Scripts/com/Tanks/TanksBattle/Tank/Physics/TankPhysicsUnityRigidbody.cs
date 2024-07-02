@@ -32,6 +32,16 @@ namespace com.Tanks.TanksBattle.Tank.Physics {
             set => _rigidbody.MoveRotation(value);
         }
 
+        public Vector3 Velocity {
+            get => _rigidbody.velocity;
+            set => _rigidbody.velocity = value;
+        }
+
+        public Vector3 AngularVelocity {
+            get => _rigidbody.angularVelocity;
+            set => _rigidbody.angularVelocity = value;
+        }
+
         public void Move(Vector3 position, Quaternion rotation) {
             _rigidbody.Move(position, rotation);
         }

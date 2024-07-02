@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7222247308833005315}
   - component: {fileID: 3700419606937061525}
   - component: {fileID: 4226952736666714222}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8091282017603836782}
   - component: {fileID: 78796840267233902}
   - component: {fileID: 9168478862314491228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_WheelsBigFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5400575082636721284}
   - component: {fileID: 8595929172014128921}
   - component: {fileID: 2910872016005482873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_WheelsBigBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2205848814390540339}
   - component: {fileID: 4701626241076792863}
   - component: {fileID: 4446243665451426264}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7323222985862595967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 3092646545694863034}
   - component: {fileID: 2426866517989334032}
   - component: {fileID: 917302134603441376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_WheelsSmallUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 2857676171091954148}
   - component: {fileID: 3729561710966911190}
   - component: {fileID: 3646436653416806598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank_WheelsSmallBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: -3463304951503025332}
   - component: {fileID: 7303929482249031648}
   - component: {fileID: 6962815430841097000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7813564006235948715}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b0422daf0f46c9e4191f022422851011, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

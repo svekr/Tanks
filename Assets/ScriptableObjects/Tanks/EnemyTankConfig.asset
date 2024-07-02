@@ -18,4 +18,4 @@ MonoBehaviour:
     _movementType: 1
     _velocity:
       _linear: 5
-      _angular: 20
+      _angular: 3

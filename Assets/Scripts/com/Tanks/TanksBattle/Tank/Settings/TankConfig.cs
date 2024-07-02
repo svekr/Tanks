@@ -25,7 +25,7 @@ namespace com.Tanks.TanksBattle.Tank.Settings {
     [Serializable]
     public class TankVelocityConfig : ITankVelocitySettings {
         [SerializeField] private float _linear = 5f;
-        [SerializeField] private float _angular = 20f;
+        [SerializeField] private float _angular = 3f;
 
         public float Linear => _linear;
         public float Angular => _angular;

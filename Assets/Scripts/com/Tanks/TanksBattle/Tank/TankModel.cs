@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace com.Tanks.TanksBattle.Tank {
     public class TankModel : ITankModel {
+        public bool IsDestroyed { get; private set; }
         public EntityType Type { get; private set; }
         public string Name { get; private set; }
         public IGameEntityView View { get; private set; }
@@ -39,6 +40,7 @@ namespace com.Tanks.TanksBattle.Tank {
         }
 
         public bool DoUpdate(float deltaTime) {
+            if (IsDestroyed) return false;
             return _physicsModel?.DoUpdate(deltaTime) == true;
         }
 
@@ -47,6 +49,8 @@ namespace com.Tanks.TanksBattle.Tank {
         }
 
         public void Destroy() {
+            if (IsDestroyed) return;
+            IsDestroyed = true;
             View.Destroy();
             View = null;
             EventProvider.Destroy();
@@ -69,9 +73,9 @@ namespace com.Tanks.TanksBattle.Tank {
             _movement.SetPhysicsModel(_physicsModel);
         }
 
-        private void OnContact(IGameEntity other) {
+        private void OnContact(IGameEntity other, Vector3 contactPoint) {
             if (other == null) return;
-            if (other.Type == EntityType.Player) {
+            if (Type == EntityType.Player && other.Type == EntityType.Enemy) {
                 Destroy();
             }
         }

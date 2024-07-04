@@ -43,6 +43,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
 
         public bool DoUpdate(float deltaTime) {
             if (IsActive) {
+                _input?.DoUpdate(deltaTime);
                 UpdateModel(deltaTime);
             }
             return !_isDestroyed;
@@ -51,7 +52,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement {
         public void Destroy() {
             if (_isDestroyed) return;
             if (_input != null) {
-                _input.StopListenInput();
+                _input.Destroy();
                 _input = default;
             }
             if (_model != null) {

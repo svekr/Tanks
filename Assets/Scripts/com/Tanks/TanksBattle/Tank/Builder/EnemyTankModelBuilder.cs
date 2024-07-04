@@ -2,6 +2,7 @@
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
+using com.Tanks.TanksBattle.Tank.Movement.Input;
 using com.Tanks.TanksBattle.Tank.Physics;
 
 namespace com.Tanks.TanksBattle.Tank.Builder {
@@ -16,9 +17,11 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
             ITankEventProvider eventProvider) {
             switch (settings.MovementType) {
                 case TankMovementType.Classic:
-                    return new TankMovementClassic(model, null, settings.Velocity);
+                    var aiClassic = new TankMovementAIClassic(model, eventProvider, Entities);
+                    return new TankMovementClassic(model, aiClassic, settings.Velocity);
                 case TankMovementType.Caterpillar:
-                    return new TankMovementCaterpillar(model, null, settings.Velocity);
+                    var aiCaterpillar = new TankMovementAICaterpillar(model, eventProvider, Entities);
+                    return new TankMovementCaterpillar(model, aiCaterpillar, settings.Velocity);
                 default:
                     return new TankMovementNone(model);
             }

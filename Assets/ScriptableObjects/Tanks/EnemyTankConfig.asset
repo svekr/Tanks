@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyTankConfig
   m_EditorClassIdentifier: 
   _prefab: {fileID: 6081855910472013766, guid: a9b057d6576d91847b3dba838361de65, type: 3}
-  _movementType: 1
+  _movementType: 2
   _movementVelocityLinear: 5
   _movementVelocityAngular: 3

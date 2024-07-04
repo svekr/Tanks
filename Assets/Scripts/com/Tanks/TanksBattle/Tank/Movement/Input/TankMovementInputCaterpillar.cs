@@ -16,6 +16,14 @@
             Main.Managers.InputManager.GetAxis.RemoveListener(_axisRightName, OnAxisRight);
         }
 
+        public void Destroy() {
+            StopListenInput();
+        }
+
+        public bool DoUpdate(float deltaTime) {
+            return true;
+        }
+
         private void OnAxisLeft(float value) {
             AxisLeft = value;
         }

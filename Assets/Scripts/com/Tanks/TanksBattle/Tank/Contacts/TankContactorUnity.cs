@@ -36,15 +36,15 @@ namespace com.Tanks.TanksBattle.Tank.Contacts {
             return contactProvider;
         }
 
-        private void OnContact(IGameEntityView otherView) {
+        private void OnContact(IGameEntityView otherView, Vector3 contactPoint) {
             if (otherView != null && _entities != null) {
                 foreach (var entity in _entities) {
                     if (entity?.View != otherView) continue;
-                    _tankEventProvider.InvokeContact(entity);
+                    _tankEventProvider.InvokeContact(entity, contactPoint);
                     return;
                 }
             }
-            _tankEventProvider.InvokeContact(null);
+            _tankEventProvider.InvokeContact(null, contactPoint);
         }
     }
 }

@@ -3,6 +3,7 @@ using Utils.Updatable;
 
 namespace com.Tanks.TanksBattle.Game.GameEntity {
     public interface IGameEntity : IUpdatable {
+        bool IsDestroyed { get; }
         EntityType Type { get; }
         string Name { get; }
         IGameEntityView View { get; }

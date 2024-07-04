@@ -20,8 +20,11 @@ namespace com.Tanks.TanksBattle.Game {
         }
 
         public void DoUpdate(float deltaTime) {
-            foreach (var entity in _entities) {
-                entity.DoUpdate(deltaTime);
+            for (var i = 0; i < _entities.Count; i++) {
+                if (_entities[i].DoUpdate(deltaTime)) continue;
+                _entities[i] = _entities[^1];
+                _entities.RemoveAt(_entities.Count - 1);
+                i--;
             }
         }
 

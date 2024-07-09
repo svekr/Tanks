@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using com.Tanks.TanksBattle.Game.GameEntity;
+using com.Tanks.TanksBattle.Game.Settings;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Physics;
 using UnityEngine;
@@ -7,13 +8,10 @@ using UnityEngine;
 namespace com.Tanks.TanksBattle.Tank.Movement.Input {
     abstract public class TankMovementAI : ITankMovementInput {
         private const float SPREAD_ANGLE_INITIAL = 60f;
-        private const float SPREAD_ANGLE_TARGET_HUNT = 0f;
         private const float SPREAD_ANGLE_CONTACT = 45f;
-
-        private const float STRAIGHT_MOVEMENT_TIME_MIN = 1.5f;
-        private const float STRAIGHT_MOVEMENT_TIME_MAX = 3.5f;
         private const float MIN_TIME_BETWEEN_CONTACTS = 0.8f;
 
+        private readonly TankAIMovementSettings _aiSettings;
         private readonly ITankPhysics _tankPhysics;
         private readonly ITankEventProvider _eventProvider;
         private readonly List<IGameEntity> _entities;
@@ -28,7 +26,8 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         protected float DeltaAngle { get; private set; }
         protected float DeltaForward { get; private set; }
 
-        protected TankMovementAI(ITankPhysics physicsModel, ITankEventProvider eventProvider, List<IGameEntity> entities) {
+        protected TankMovementAI(TankAIMovementSettings aiSettings, ITankPhysics physicsModel, ITankEventProvider eventProvider, List<IGameEntity> entities) {
+            _aiSettings = aiSettings;
             _tankPhysics = physicsModel;
             _eventProvider = eventProvider;
             _entities = entities;
@@ -80,7 +79,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
 
         private void RedirectToTarget(IGameEntity target) {
             if (target != null) {
-                ChangeDirection(target.Position - _tankPhysics.Position, SPREAD_ANGLE_TARGET_HUNT);
+                ChangeDirection(target.Position - _tankPhysics.Position, _aiSettings.PlayerHuntAccuracy);
             } else {
                 ChangeDirection(Vector3.zero - _tankPhysics.Position, SPREAD_ANGLE_INITIAL);
             }
@@ -89,7 +88,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         private void ChangeDirection(Vector3 direction, float spread) {
             var randomAngle = Random.Range(-spread, spread);
             _direction = Quaternion.LookRotation(direction) * Quaternion.Euler(0f, randomAngle, 0f);
-            _timeToChangeDirection = Random.Range(STRAIGHT_MOVEMENT_TIME_MIN, STRAIGHT_MOVEMENT_TIME_MAX);
+            _timeToChangeDirection = Random.Range(_aiSettings.StraightMovementTimeMin, _aiSettings.StraightMovementTimeMax);
         }
 
         private IGameEntity GetTarget(EntityType targetType, ref IGameEntity result) {

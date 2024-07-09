@@ -20,10 +20,10 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
             ITankEventProvider eventProvider) {
             switch (settings.MovementType) {
                 case TankMovementType.Classic:
-                    var aiClassic = new TankMovementAIClassic(model, eventProvider, Entities);
+                    var aiClassic = new TankMovementAIClassic(GameContext.AISettings.Movement, model, eventProvider, Entities);
                     return new TankMovementClassic(model, aiClassic, settings.Velocity);
                 case TankMovementType.Caterpillar:
-                    var aiCaterpillar = new TankMovementAICaterpillar(model, eventProvider, Entities);
+                    var aiCaterpillar = new TankMovementAICaterpillar(GameContext.AISettings.Movement, model, eventProvider, Entities);
                     return new TankMovementCaterpillar(model, aiCaterpillar, settings.Velocity);
                 default:
                     return new TankMovementNone(model);

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using com.Tanks.TanksBattle.Game.GameEntity;
+using com.Tanks.TanksBattle.Game.Settings;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Physics;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         public float AxisLeft { get; private set; }
         public float AxisRight { get; private set; }
 
-        public TankMovementAICaterpillar(ITankPhysics physicsModel, ITankEventProvider eventProvider, List<IGameEntity> entities) :
-            base(physicsModel, eventProvider, entities) {
+        public TankMovementAICaterpillar(TankAIMovementSettings aiSettings, ITankPhysics physicsModel,
+            ITankEventProvider eventProvider, List<IGameEntity> entities) :
+            base(aiSettings, physicsModel, eventProvider, entities) {
         }
 
         override protected void SetAxes() {

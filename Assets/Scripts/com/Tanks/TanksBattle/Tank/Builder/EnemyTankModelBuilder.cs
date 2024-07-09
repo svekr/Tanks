@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
+using com.Tanks.TanksBattle.Game;
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
 using com.Tanks.TanksBattle.Tank.Movement.Input;
 using com.Tanks.TanksBattle.Tank.Physics;
+using com.Tanks.TanksBattle.Tank.Shooting;
+using com.Tanks.TanksBattle.Tank.Shooting.Input;
 
 namespace com.Tanks.TanksBattle.Tank.Builder {
     public class EnemyTankModelBuilder : TankModelBuilder {
         override public EntityType EntityType => EntityType.Enemy;
 
-        public EnemyTankModelBuilder(List<IGameEntity> entities) : base(entities) {
+        public EnemyTankModelBuilder(List<IGameEntity> entities, GameContext context) : base(entities, context) {
 
         }
 
@@ -25,6 +28,11 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
                 default:
                     return new TankMovementNone(model);
             }
+        }
+
+        override public ITankShooting BuildShooting(ITankModel tank, ITankShootingSettings settings) {
+            var input = new ShootingInputAI(GameContext.AISettings.Shooting, settings.ReloadDuration, tank, Entities);
+            return new TankShooting(input, GameContext, tank);
         }
     }
 }

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1948695069458863741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4901325669421594995}
+  - component: {fileID: 2060142807556317286}
+  m_Layer: 0
+  m_Name: GameContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4901325669421594995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948695069458863741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060142807556317286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948695069458863741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b694624d365422590e8438494e597ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraControl: {fileID: 0}
+  _playerConfig: {fileID: 11400000, guid: b1c07971e186cbf46a66bfdf9384904c, type: 2}
+  _enemyConfig: {fileID: 11400000, guid: 09e353890dab4804792d75a3c5e18e87, type: 2}
+  _tanksContainer: {fileID: 0}
+  _projectileFactory: {fileID: 11400000, guid: 2eef69cd77f0bac4981a97f72326122c, type: 2}
+  _tanksAISettings: {fileID: 11400000, guid: 6526c49793cd2fe47a079bdd7317f0f3, type: 2}

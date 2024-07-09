@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using com.Tanks.TanksBattle.Game;
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Tank.Contacts;
 using com.Tanks.TanksBattle.Tank.Events;
 using com.Tanks.TanksBattle.Tank.Movement;
 using com.Tanks.TanksBattle.Tank.Physics;
 using com.Tanks.TanksBattle.Tank.Settings;
+using com.Tanks.TanksBattle.Tank.Shooting;
 using com.Tanks.TanksBattle.Tank.View;
 
 namespace com.Tanks.TanksBattle.Tank.Builder {
@@ -12,9 +14,11 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
         abstract public EntityType EntityType { get; }
 
         protected List<IGameEntity> Entities { get; }
+        protected GameContext GameContext { get; }
 
-        protected TankModelBuilder(List<IGameEntity> entities) {
+        protected TankModelBuilder(List<IGameEntity> entities, GameContext context) {
             Entities = entities;
+            GameContext = context;
         }
 
         public ITankModel BuildTank(string name, ITankView view, ITankSettings settings) {
@@ -29,7 +33,10 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
             return new TankContactorUnity(tank.View.Transform, tank.EventProvider, Entities);
         }
 
-        abstract public ITankMovement BuildMovement(ITankPhysics physics, ITankMovementSettings settings,
-            ITankEventProvider eventProvider);
+        abstract public ITankMovement BuildMovement(ITankPhysics physics, ITankMovementSettings settings, ITankEventProvider eventProvider);
+
+        virtual public ITankShooting BuildShooting(ITankModel tank, ITankShootingSettings settings) {
+            return null;
+        }
     }
 }

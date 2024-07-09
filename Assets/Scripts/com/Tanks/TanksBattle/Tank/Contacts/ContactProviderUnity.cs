@@ -6,6 +6,7 @@ using UnityEngine;
 namespace com.Tanks.TanksBattle.Tank.Contacts {
     public class ContactProviderUnity : MonoBehaviour, IContactProvider {
         [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private bool _ignoreTriggers;
 
         private readonly List<ContactPoint> _contacts = new ();
 
@@ -17,7 +18,7 @@ namespace com.Tanks.TanksBattle.Tank.Contacts {
         }
 
         private void OnTriggerEnter(Collider other) {
-            if (!IsLayerSuitable(other.gameObject)) return;
+            if (_ignoreTriggers || !IsLayerSuitable(other.gameObject)) return;
             ContactHandler?.Invoke(other.gameObject.GetComponent<IGameEntityView>(), GetContactPoint(other));
         }
 

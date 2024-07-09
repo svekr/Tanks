@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e579d72bf94a92bbc12861b4772d65, type: 3}
+  m_Name: Projectile
+  m_EditorClassIdentifier: 
+  _poolContainer: {fileID: 0}
+  _poolCapacity: 10
+  _projectile: {fileID: 2277994749838517414, guid: 4914be3f8a4823e4da7e815cb6df044a,
+    type: 3}
+  _projectileExplosion: {fileID: -4381575532275796102, guid: 693f9f64c9dbf304c81e2516177a2da1,
+    type: 3}
+  _shotMuzzleEffect: {fileID: 1892114381881429819, guid: 018c6bb3f1d37b34fbba9163f8f42430,
+    type: 3}

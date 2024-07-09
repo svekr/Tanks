@@ -37,10 +37,10 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
         private IGameEntity BuildEntity(string name, EntityType type) {
             switch (type) {
                 case EntityType.Player:
-                    _playerBuilder ??= new PlayerTankModelBuilder(_entities);
+                    _playerBuilder ??= new PlayerTankModelBuilder(_entities, _context);
                     return BuildTank(name, _context.PlayerConfig, _playerBuilder);
                 case EntityType.Enemy:
-                    _enemyBuilder ??= new EnemyTankModelBuilder(_entities);
+                    _enemyBuilder ??= new EnemyTankModelBuilder(_entities, _context);
                     return BuildTank(name, _context.EnemyConfig, _enemyBuilder);
                 default:
                     _logger.LogError($"{GetType().Name}.{nameof(BuildEntity)}({name}, {type}): Invalid type");

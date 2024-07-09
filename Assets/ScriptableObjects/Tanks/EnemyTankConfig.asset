@@ -16,3 +16,4 @@ MonoBehaviour:
   _movementType: 2
   _movementVelocityLinear: 5
   _movementVelocityAngular: 3
+  _reloadDuration: 2.5

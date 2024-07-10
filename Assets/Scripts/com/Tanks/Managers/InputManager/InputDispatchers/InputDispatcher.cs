@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace com.Tanks.Managers.InputManager.InputDispatchers {
-    abstract public class AInputDispatcher<TKey, TValue, TListener> where TListener : Delegate {
+    abstract public class InputDispatcher<TKey, TValue, TListener> where TListener : Delegate {
         protected readonly Dictionary<TKey, List<TListener>> _listeners = new();
         protected readonly Dictionary<TKey, TValue> _simulations = new();
 

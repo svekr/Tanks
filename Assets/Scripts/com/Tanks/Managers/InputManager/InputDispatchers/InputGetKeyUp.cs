@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 namespace com.Tanks.Managers.InputManager.InputDispatchers {
-    public class AInputGetKeyUp : AInputGetKey {
+    public class InputGetKeyUp : InputGetKey {
         override public bool GetValue(KeyCode key) {
-            return Input.GetKeyUp(key) || _simulations.ContainsKey(key);
+            return Input.GetKeyUp(key);
         }
     }
 }

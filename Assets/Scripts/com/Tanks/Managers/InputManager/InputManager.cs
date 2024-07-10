@@ -4,10 +4,10 @@ using Utils.Updatable;
 
 namespace com.Tanks.Managers.InputManager {
     public class InputManager : IUpdatable {
-        public AInputGetAxis GetAxis { get; } = new();
-        public AInputGetKeyDown GetKeyDown { get; } = new();
-        public AInputGetKey GetKey { get; } = new();
-        public AInputGetKeyUp GetKeyUp { get; } = new();
+        public InputGetAxis GetAxis { get; } = new();
+        public InputGetKeyDown GetKeyDown { get; } = new();
+        public InputGetKey GetKey { get; } = new();
+        public InputGetKeyUp GetKeyUp { get; } = new();
         public bool IsEnable { get; set; } = true;
 
         public bool DoUpdate(float deltaTime) {

@@ -2,15 +2,16 @@
 using UnityEngine;
 
 namespace com.Tanks.Managers.InputManager.InputDispatchers {
-    public class AInputGetKey : AInputDispatcher<KeyCode, bool, Action> {
+    public class InputGetKey : InputDispatcher<KeyCode, bool, Action> {
         override public bool GetValue(KeyCode key) {
-            return Input.GetKey(key) || _simulations.ContainsKey(key);
+            return Input.GetKey(key);
         }
 
         override protected void AdvanceTime(float deltaTime) {
             foreach (var kvp in _listeners) {
-                var value = GetValue(kvp.Key);
-                _simulations.Remove(kvp.Key);
+                if (!_simulations.Remove(kvp.Key, out var value)) {
+                    value = GetValue(kvp.Key);
+                }
                 if (!value) continue;
                 foreach (var listener in kvp.Value) {
                     listener.Invoke();

@@ -8,6 +8,6 @@ namespace com.Tanks.TanksBattle.Tank.Events {
         event Action<TankMovementType> OnChangeMovementType;
 
         void InvokeHit(ITankModel shooter);
-        void ChangeMovementType(TankMovementType type);
+        void InvokeChangeMovementType(TankMovementType type);
     }
 }

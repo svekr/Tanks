@@ -13,12 +13,10 @@ namespace com.Tanks.TanksBattle.Tank.Shooting.Input {
         }
 
         public void StartListenInput() {
-            Main.Managers.InputManager.GetKeyDown.AddListener(KeyCode.Mouse0, InvokeShot);
             Main.Managers.InputManager.GetKeyDown.AddListener(KeyCode.Space, InvokeShot);
         }
 
         public void StopListenInput() {
-            Main.Managers.InputManager.GetKeyDown.RemoveListener(KeyCode.Mouse0, InvokeShot);
             Main.Managers.InputManager.GetKeyDown.RemoveListener(KeyCode.Space, InvokeShot);
         }
 

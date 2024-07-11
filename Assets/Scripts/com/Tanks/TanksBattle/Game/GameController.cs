@@ -1,14 +1,19 @@
-﻿using com.Tanks.TanksBattle.Game.Environment;
-using com.Tanks.TanksBattle.Tank.Movement;
+﻿using System;
+using System.Collections;
+using com.Tanks.TanksBattle.Game.Environment;
+using com.Tanks.TanksBattle.Game.GameEntity;
+using com.Tanks.TanksBattle.Tank;
 using UnityEngine;
 
 namespace com.Tanks.TanksBattle.Game {
     public class GameController : MonoBehaviour {
+        public event Action<ITankModel> OnPlayerCreated;
+
         [SerializeField] private GameContext _gameContext;
         [SerializeField] private GameEnvironment _gameEnvironment;
 
         private ILogger _logger;
-        private int _enemiesAmount = 0;
+        private int _enemiesAmount;
         private GameModel _gameModel;
 
         public void StartGame(ILogger logger, int enemiesAmount) {
@@ -16,15 +21,7 @@ namespace com.Tanks.TanksBattle.Game {
             _enemiesAmount = enemiesAmount;
             SetupGameModel();
             _gameModel.AddEnemies(enemiesAmount);
-            _gameModel.AddPlayer();
-            _gameContext.CameraControl.SetTarget(_gameModel.Player?.View?.Transform);
-
-            Main.Managers.InputManager.GetKeyDown.AddListener(KeyCode.Alpha1, () => {
-                _gameModel.Player?.EventProvider.ChangeMovementType(TankMovementType.Classic);
-            });
-            Main.Managers.InputManager.GetKeyDown.AddListener(KeyCode.Alpha2, () => {
-                _gameModel.Player?.EventProvider.ChangeMovementType(TankMovementType.Caterpillar);
-            });
+            AddPlayer();
         }
 
         public void DoUpdate(float deltaTime) {
@@ -39,9 +36,32 @@ namespace com.Tanks.TanksBattle.Game {
         private void SetupGameModel() {
             if (_gameModel == null) {
                 _gameModel = new GameModel(_logger, _gameContext, _gameEnvironment);
+                _gameModel.OnEntityRemoved += OnEntityRemoved;
             } else {
                 _gameModel.Reset();
             }
+        }
+
+        private void AddPlayer() {
+            _gameModel.AddPlayer();
+            OnPlayerCreated?.Invoke(_gameModel.Player);
+            _gameContext.CameraControl.SetTarget(_gameModel.Player?.View?.Transform);
+        }
+
+        private void OnEntityRemoved(IGameEntity entity) {
+            if (entity?.Type == EntityType.Enemy) {
+                if (_gameModel.GetEntitiesCount(entity.Type) > 0) return;
+                _gameModel.AddEnemies(_enemiesAmount);
+                return;
+            }
+            if (entity?.Type == EntityType.Player) {
+                StartCoroutine(AddPlayerDelayed());
+            }
+        }
+
+        private IEnumerator AddPlayerDelayed() {
+            yield return new WaitForSeconds(1f);
+            AddPlayer();
         }
     }
 }

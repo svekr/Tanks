@@ -77,9 +77,11 @@ namespace com.Tanks.TanksBattle.Tank {
 
         private void SetMovement(ITankMovement movement) {
             if (movement == null) return;
+            if (_movement != null && movement.MovementType == _movement.MovementType) return;
             _movement?.Destroy();
             _movement = movement;
             _movement.SetPhysicsModel(_physicsModel);
+            EventProvider.InvokeChangeMovementType(_movement.MovementType);
         }
 
         private void OnContact(IGameEntity other, Vector3 contactPoint) {
@@ -98,6 +100,7 @@ namespace com.Tanks.TanksBattle.Tank {
         }
 
         private void OnChangeMovementType(TankMovementType type) {
+            if (_movement?.MovementType == type) return;
             _settings.Movement.MovementType = type;
             SetMovement(_builder.BuildMovement(_physicsModel, _settings.Movement, EventProvider));
         }

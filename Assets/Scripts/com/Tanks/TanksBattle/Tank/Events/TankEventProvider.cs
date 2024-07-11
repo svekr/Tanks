@@ -22,7 +22,7 @@ namespace com.Tanks.TanksBattle.Tank.Events {
             OnHit?.Invoke(shooter);
         }
 
-        public void ChangeMovementType(TankMovementType type) {
+        public void InvokeChangeMovementType(TankMovementType type) {
             OnChangeMovementType?.Invoke(type);
         }
 

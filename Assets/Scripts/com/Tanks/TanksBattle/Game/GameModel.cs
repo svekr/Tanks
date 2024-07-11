@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using com.Tanks.TanksBattle.Game.Environment;
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Game.GameEntity.Factory;
@@ -6,6 +7,8 @@ using com.Tanks.TanksBattle.Tank;
 
 namespace com.Tanks.TanksBattle.Game {
     public class GameModel {
+        public event Action<IGameEntity> OnEntityRemoved;
+
         private readonly ILogger _logger;
         private readonly List<IGameEntity> _entities;
         private readonly GameEntitiesFactory _entitiesFactory;
@@ -22,8 +25,10 @@ namespace com.Tanks.TanksBattle.Game {
         public void DoUpdate(float deltaTime) {
             for (var i = 0; i < _entities.Count; i++) {
                 if (_entities[i].DoUpdate(deltaTime)) continue;
+                var removedEntity = _entities[i];
                 _entities[i] = _entities[^1];
                 _entities.RemoveAt(_entities.Count - 1);
+                OnEntityRemoved?.Invoke(removedEntity);
                 i--;
             }
         }
@@ -55,6 +60,16 @@ namespace com.Tanks.TanksBattle.Game {
                 }
                 _entities.Add(enemy);
             }
+        }
+
+        public int GetEntitiesCount(EntityType entityType) {
+            var result = 0;
+            foreach (var entity in _entities) {
+                if (entity?.Type == entityType) {
+                    result++;
+                }
+            }
+            return result;
         }
     }
 }

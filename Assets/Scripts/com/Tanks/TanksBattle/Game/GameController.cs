@@ -45,7 +45,6 @@ namespace com.Tanks.TanksBattle.Game {
         private void AddPlayer() {
             _gameModel.AddPlayer();
             OnPlayerCreated?.Invoke(_gameModel.Player);
-            _gameContext.CameraControl.SetTarget(_gameModel.Player?.View?.Transform);
         }
 
         private void OnEntityRemoved(IGameEntity entity) {

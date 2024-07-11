@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utils.CameraMovement {
+namespace Utils.Components {
     [RequireComponent(typeof(Transform))]
     public class TargetFollower : MonoBehaviour {
         [SerializeField] private Transform _target;

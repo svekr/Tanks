@@ -1620,6 +1620,7 @@ GameObject:
   - component: {fileID: 1875185584}
   - component: {fileID: 1875185589}
   - component: {fileID: 1875185590}
+  - component: {fileID: 1875185591}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -1711,6 +1712,20 @@ MonoBehaviour:
     m_Bits: 64
   _colliderRadius: 0.5
   _anglesCollisionImpact: 0.7
+--- !u!114 &1875185591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875185581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f2d3243b5e4d48b10992a6afccf3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _follower: {fileID: 1875185590}
+  _gameController: {fileID: 1668347544}
 --- !u!224 &1892274544 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8181627252321707217, guid: bf56c0f633f02d5478f345066e515093,

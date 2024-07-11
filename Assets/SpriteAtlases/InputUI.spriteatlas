@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: InputUI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: bc408d2096aac7d46b7430e906a8d4b0, type: 3}
+    - {fileID: 102900000, guid: 6000f5d40c4891248858246dbf29f058, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 28716330e68abc84a8942ef3910aaf55: 21300000
+    - a86d2140822ebac4f965c5eba2605fc3: 21300000
+    - afa5b970c3f4e2d44bbfc23229508f74: 21300000
+    - 94d03642459e44d47a37c46325126be9: 21300000
+    - d629a05676f497741b9dd949654f33f9: 21300000
+    - efe592c851e55da49a87664a4a6545af: 21300000
+    - 688736c813b2dcf4084744ecaab77ab7: 21300000
+    - e9cb6e2dcbcf05d44a563babb54438cc: 21300000
+    - 7d4a668d7cff2934f90631531e58bfb6: 21300000
+    - ab125d1e6b7b7d843b3dc6b7ba28781c: 21300000
+    - 70cc99afd6fb90f428499e05403e2150: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 28716330e68abc84a8942ef3910aaf55, type: 3}
+  - {fileID: 21300000, guid: a86d2140822ebac4f965c5eba2605fc3, type: 3}
+  - {fileID: 21300000, guid: afa5b970c3f4e2d44bbfc23229508f74, type: 3}
+  - {fileID: 21300000, guid: 94d03642459e44d47a37c46325126be9, type: 3}
+  - {fileID: 21300000, guid: d629a05676f497741b9dd949654f33f9, type: 3}
+  - {fileID: 21300000, guid: efe592c851e55da49a87664a4a6545af, type: 3}
+  - {fileID: 21300000, guid: 688736c813b2dcf4084744ecaab77ab7, type: 3}
+  - {fileID: 21300000, guid: e9cb6e2dcbcf05d44a563babb54438cc, type: 3}
+  - {fileID: 21300000, guid: 7d4a668d7cff2934f90631531e58bfb6, type: 3}
+  - {fileID: 21300000, guid: ab125d1e6b7b7d843b3dc6b7ba28781c, type: 3}
+  - {fileID: 21300000, guid: 70cc99afd6fb90f428499e05403e2150, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - OutlineJoystick
+  - TankIcon
+  - TankIconUpTurret
+  - TankIconChassis
+  - OutlineVerticalArrows
+  - TankIconTurret
+  - TankIconUpChassis
+  - TankIconUp
+  - CircleFilled
+  - OutlineCircle
+  - OutlineHorizontal
+  m_RenderDataMap: {}
+  m_Tag: UIInput
+  m_IsVariant: 0

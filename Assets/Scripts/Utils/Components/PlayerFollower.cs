@@ -7,7 +7,7 @@ namespace Utils.Components {
         [SerializeField] private TargetFollower _follower;
         [SerializeField] private GameController _gameController;
 
-        private void Start() {
+        private void Awake() {
             if (_gameController == null) return;
             _gameController.OnPlayerCreated += OnPlayerCreated;
         }

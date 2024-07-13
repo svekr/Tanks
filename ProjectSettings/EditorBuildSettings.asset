@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TanksBattleScene.unity
+    guid: 8f97c3162e7d6cb4d93602702fc0fe79
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
+      guid: 787c76d15a16077489df6808f7ca0636, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c86f8be451a81e64ebe9575f5019d88b,
+      type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 097608451d1d88946b0320690a5111e3, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
-      guid: cf46a6871769a0f4987832da4623f0d5, type: 2}
+      guid: f410ec13d0ba3f240914d159c766a6d5, type: 2}

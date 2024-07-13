@@ -1,4 +1,5 @@
-﻿using com.Tanks.TanksBattle.Tank.Movement;
+﻿using System;
+using com.Tanks.TanksBattle.Tank.Movement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,11 @@ namespace com.Tanks.TanksBattle.UI.Input {
         private readonly string _axisRightName = "RightCaterpillar";
 
         override public TankMovementType MovementType => TankMovementType.Caterpillar;
+
+        override protected void Reset() {
+            _joystickLeft.Reset();
+            _joystickRight.Reset();
+        }
 
         override protected void AddListeners() {
             _shotButtonLeft.onClick.AddListener(OnShotButtonClick);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace com.Tanks.TanksBattle.UI.Input {
@@ -17,6 +18,12 @@ namespace com.Tanks.TanksBattle.UI.Input {
 
         public float AxisVertical => _inputY;
         public float AxisHorizontal => _inputX;
+
+        public void Reset() {
+            _inputX = 0;
+            _inputY = 0;
+            _handle.anchoredPosition = Vector2.zero;
+        }
 
         public void OnPointerDown(PointerEventData eventData) {
             _backgroundPosition = RectTransformUtility.WorldToScreenPoint(null, _background.position);
@@ -42,14 +49,11 @@ namespace com.Tanks.TanksBattle.UI.Input {
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            _inputX = 0;
-            _inputY = 0;
-            _handle.anchoredPosition = Vector2.zero;
+            Reset();
         }
 
-        private void Start() {
-            _inputX = 0;
-            _inputY = 0;
+        private void OnEnable() {
+            Reset();
         }
     }
 }

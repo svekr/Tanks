@@ -1,5 +1,4 @@
 ﻿using com.Tanks.TanksBattle.Tank.Movement;
-using com.Tanks.TanksBattle.Tank.Movement.Input;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,10 @@ namespace com.Tanks.TanksBattle.UI.Input {
         private readonly string _axisHorizontalName = "Horizontal";
 
         override public TankMovementType MovementType => TankMovementType.Classic;
+
+        override protected void Reset() {
+            _joystick.Reset();
+        }
 
         override protected void AddListeners() {
             _shotButton.onClick.AddListener(OnShotButtonClick);

@@ -22,6 +22,7 @@ namespace com.Tanks.TanksBattle.UI.Input {
             _player.EventProvider.OnChangeMovementType += OnChangeMovementType;
             if (_movementTypeSwitcher) {
                 _movementTypeSwitcher.OnSwitch += OnSwitchMovementType;
+                OnSwitchMovementType(_movementTypeSwitcher.CurrentType);
             }
             gameObject.SetActive(true);
         }

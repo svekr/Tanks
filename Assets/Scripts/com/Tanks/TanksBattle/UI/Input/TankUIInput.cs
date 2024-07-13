@@ -13,6 +13,7 @@ namespace com.Tanks.TanksBattle.UI.Input {
             if (_isActive) return;
             _isActive = true;
             gameObject.SetActive(true);
+            Reset();
             AddListeners();
         }
 
@@ -26,6 +27,8 @@ namespace com.Tanks.TanksBattle.UI.Input {
         public void SetShotButtonHandler(Action shotButtonHandler) {
             _shotButtonHandler = shotButtonHandler;
         }
+
+        abstract protected void Reset();
 
         abstract protected void AddListeners();
 

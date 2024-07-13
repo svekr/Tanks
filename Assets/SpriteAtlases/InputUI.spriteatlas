@@ -75,5 +75,5 @@ SpriteAtlas:
   - OutlineCircle
   - OutlineHorizontal
   m_RenderDataMap: {}
-  m_Tag: UIInput
+  m_Tag: InputUI
   m_IsVariant: 0

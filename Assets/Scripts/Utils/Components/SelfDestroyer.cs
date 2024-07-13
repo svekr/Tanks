@@ -6,12 +6,23 @@ namespace Utils.Components {
     public class SelfDestroyer : PoolableMonoBehaviour {
         [SerializeField] private float _destroyAfter = 1f;
 
+        private Coroutine _coroutine;
+        private WaitForSeconds _wait;
+
         private void OnEnable() {
-            StartCoroutine(DelayedDestroy(_destroyAfter));
+            _coroutine = StartCoroutine(DelayedDestroy());
         }
 
-        private IEnumerator DelayedDestroy(float delay) {
-            yield return new WaitForSeconds(delay);
+        private void OnDisable() {
+            if (_coroutine == null) return;
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+
+        private IEnumerator DelayedDestroy() {
+            _wait ??= new WaitForSeconds(_destroyAfter);
+            yield return _wait;
+            _coroutine = null;
             ReturnToPool();
         }
     }

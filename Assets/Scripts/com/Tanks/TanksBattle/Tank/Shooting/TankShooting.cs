@@ -46,9 +46,9 @@ namespace com.Tanks.TanksBattle.Tank.Shooting {
         }
 
         private void DoShot() {
-            var projectile = _gameContext.ProjectileFactory.GetProjectile(_model.TankView.MuzzleTransform);
-            projectile.transform.SetParent(_model.View.Transform.parent);
-            projectile.DoShot(OnHit);
+            var muzzle = _model.TankView.MuzzleTransform;
+            var projectile = _gameContext.ProjectileFactory.GetProjectile(muzzle, _model.View.Transform.parent);
+            projectile.DoShot(OnHit, muzzle);
         }
 
         private void OnHit(IGameEntityView otherView, Vector3 contactPoint) {

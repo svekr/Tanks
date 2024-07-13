@@ -1,6 +1,5 @@
 ﻿using com.Tanks.TanksBattle.Tank.Shooting.Projectile;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utils.Components;
 using Utils.Pool;
 
@@ -27,14 +26,14 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
             }
         }
 
-        public Projectile GetProjectile(Transform container) {
+        public Projectile GetProjectile(Transform muzzle, Transform parent) {
             _projectilePool ??= new GameObjectPool<Projectile>(_projectile, _poolCapacity, PoolContainer);
             var projectile = _projectilePool.Get();
-            SetContainer(projectile, container);
+            SetToMuzzle(projectile, muzzle, parent);
 
             if (_shotMuzzleEffect != null) {
                 _shotPool ??= new GameObjectPool<SelfDestroyer>(_shotMuzzleEffect, _poolCapacity, PoolContainer);
-                SetContainer(_shotPool.Get(), container);
+                SetToMuzzle(_shotPool.Get(), muzzle);
             }
 
             if (_projectileExplosion != null) {
@@ -45,10 +44,11 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
             return projectile;
         }
 
-        private void SetContainer(Component value, Transform container) {
-            if (value == null || container == null) return;
-            value.transform.SetParent(container);
-            value.transform.SetPositionAndRotation(container.position, container.rotation);
+        private void SetToMuzzle(Component component, Transform muzzle, Transform parent = null) {
+            if (component == null || muzzle == null) return;
+            component.transform.SetParent(parent ? parent : muzzle);
+            component.transform.SetPositionAndRotation(muzzle.position, muzzle.rotation);
+            // component.gameObject.SetActive(true);
         }
     }
 }

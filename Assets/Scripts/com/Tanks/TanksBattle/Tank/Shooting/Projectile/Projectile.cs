@@ -8,6 +8,7 @@ using Utils.Pool;
 namespace com.Tanks.TanksBattle.Tank.Shooting.Projectile {
 
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(ContactProviderUnity))]
     public class Projectile : PoolableMonoBehaviour {
         [SerializeField] private float _velocity = 60f;
 
@@ -20,34 +21,25 @@ namespace com.Tanks.TanksBattle.Tank.Shooting.Projectile {
             _getExplosion = explosionAccessor;
         }
 
-        public void DoShot(Action<IGameEntityView, Vector3> hitHandler) {
+        public void DoShot(Action<IGameEntityView, Vector3> hitHandler, Transform muzzle) {
             _hitHandler = hitHandler;
+            _rigidbody.Move(muzzle.position, muzzle.rotation);
             _rigidbody.velocity = transform.forward * _velocity;
         }
 
         private void Awake() {
             _rigidbody = GetComponent<Rigidbody>();
-            _contactProvider = GetContactProvider(transform);
+            _contactProvider = GetComponent<ContactProviderUnity>();
             _contactProvider.ContactHandler += OnContact;
-        }
-
-        private IContactProvider GetContactProvider(Transform transform) {
-            if (transform == null) {
-                throw new ArgumentNullException();
-            }
-            var contactProvider = transform.GetComponent<ContactProviderUnity>();
-            if (contactProvider == null) {
-                contactProvider = transform.gameObject.AddComponent<ContactProviderUnity>();
-            }
-            return contactProvider;
         }
 
         private void OnContact(IGameEntityView otherView, Vector3 contactPoint) {
             _rigidbody.velocity = Vector3.zero;
-            if (!gameObject.activeSelf) return;
-            _hitHandler?.Invoke(otherView, contactPoint);
-            _hitHandler = null;
-            InstantiateExplosion(contactPoint);
+            if (gameObject.activeSelf) {
+                _hitHandler?.Invoke(otherView, contactPoint);
+                _hitHandler = null;
+                InstantiateExplosion(contactPoint);
+            }
             ReturnToPool();
         }
 

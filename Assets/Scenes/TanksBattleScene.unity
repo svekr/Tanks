@@ -1538,6 +1538,7 @@ GameObject:
   - component: {fileID: 1875185589}
   - component: {fileID: 1875185590}
   - component: {fileID: 1875185591}
+  - component: {fileID: 1875185592}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -1643,6 +1644,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _follower: {fileID: 1875185590}
   _gameController: {fileID: 1668347544}
+--- !u!81 &1875185592
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875185581}
+  m_Enabled: 1
 --- !u!224 &1892274544 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8181627252321707217, guid: bf56c0f633f02d5478f345066e515093,

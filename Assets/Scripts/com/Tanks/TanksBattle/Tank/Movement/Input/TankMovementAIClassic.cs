@@ -7,7 +7,7 @@ using com.Tanks.TanksBattle.Tank.Physics;
 namespace com.Tanks.TanksBattle.Tank.Movement.Input {
     public class TankMovementAIClassic : TankMovementAI, ITankMovementInputClassic {
         public TankMovementAIClassic(TankAIMovementSettings aiSettings, ITankPhysics physicsModel,
-            ITankEventProvider eventProvider, List<IGameEntity> entities) :
+            ITankEventProvider eventProvider, IReadOnlyList<IGameEntity> entities) :
             base(aiSettings, physicsModel, eventProvider, entities) {
         }
 

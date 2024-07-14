@@ -12,7 +12,7 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
     public class PlayerTankModelBuilder : TankModelBuilder {
         override public EntityType EntityType => EntityType.Player;
 
-        public PlayerTankModelBuilder(List<IGameEntity> entities, GameContext context) : base(entities, context) {
+        public PlayerTankModelBuilder(IReadOnlyList<IGameEntity> entities, GameContext context) : base(entities, context) {
 
         }
 

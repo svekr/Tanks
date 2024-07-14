@@ -12,12 +12,12 @@ namespace com.Tanks.TanksBattle.Tank.Shooting.Input {
         private TankAIShootingSettings _aiSettings;
         private float _reloadDuration;
         private Transform _muzzle;
-        private List<IGameEntity> _entities;
+        private IReadOnlyList<IGameEntity> _entities;
         private float _shotCooldown;
         private bool _isActive;
         private IGameEntity _target;
 
-        public ShootingInputAI(TankAIShootingSettings aiSettings, float reloadDuration, ITankModel model, List<IGameEntity> entities) {
+        public ShootingInputAI(TankAIShootingSettings aiSettings, float reloadDuration, ITankModel model, IReadOnlyList<IGameEntity> entities) {
             _aiSettings = aiSettings ?? throw new ArgumentNullException(nameof(aiSettings));
             _reloadDuration = reloadDuration;
             _muzzle = model.TankView.MuzzleTransform;
@@ -52,7 +52,11 @@ namespace com.Tanks.TanksBattle.Tank.Shooting.Input {
 
         private void UpdateTarget() {
             if (_target != null && !_target.IsDestroyed) return;
-            _target = _entities.Find(entity => entity?.Type == EntityType.Player);
+            _target = null;
+            foreach (var entity in _entities) {
+                if (entity?.Type != EntityType.Player) continue;
+                _target = entity;
+            }
             if (_target?.IsDestroyed == true) {
                 _target = null;
             }

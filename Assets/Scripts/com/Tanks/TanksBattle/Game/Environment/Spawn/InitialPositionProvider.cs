@@ -10,13 +10,13 @@ namespace com.Tanks.TanksBattle.Game.Environment.Spawn {
         private readonly ILogger _logger;
 
         private IGameEnvironment _environment;
-        private List<IGameEntity> _entities;
+        private IReadOnlyList<IGameEntity> _entities;
 
         public InitialPositionProvider(ILogger logger) {
             _logger = logger;
         }
 
-        public void SetEnvironment(IGameEnvironment environment, List<IGameEntity> existingEntities) {
+        public void SetEnvironment(IGameEnvironment environment, IReadOnlyList<IGameEntity> existingEntities) {
             _environment = environment;
             _entities = existingEntities;
         }

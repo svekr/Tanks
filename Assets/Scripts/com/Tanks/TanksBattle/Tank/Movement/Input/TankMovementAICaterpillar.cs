@@ -11,7 +11,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         public float AxisRight { get; private set; }
 
         public TankMovementAICaterpillar(TankAIMovementSettings aiSettings, ITankPhysics physicsModel,
-            ITankEventProvider eventProvider, List<IGameEntity> entities) :
+            ITankEventProvider eventProvider, IReadOnlyList<IGameEntity> entities) :
             base(aiSettings, physicsModel, eventProvider, entities) {
         }
 

@@ -7,10 +7,10 @@ using UnityEngine;
 namespace com.Tanks.TanksBattle.Tank.Contacts {
     public class TankContactorUnity : ITankContactor {
         private ITankEventProvider _tankEventProvider;
-        private List<IGameEntity> _entities;
+        private IReadOnlyList<IGameEntity> _entities;
         private IContactProvider _contactProvider;
 
-        public TankContactorUnity(Transform transform, ITankEventProvider tankEventProvider, List<IGameEntity> entities) {
+        public TankContactorUnity(Transform transform, ITankEventProvider tankEventProvider, IReadOnlyList<IGameEntity> entities) {
             _contactProvider = GetContactProvider(transform);
             _contactProvider.ContactHandler += OnContact;
             _tankEventProvider = tankEventProvider;

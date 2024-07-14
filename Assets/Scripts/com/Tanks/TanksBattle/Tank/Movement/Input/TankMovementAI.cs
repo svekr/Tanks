@@ -14,7 +14,7 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         private readonly TankAIMovementSettings _aiSettings;
         private readonly ITankPhysics _tankPhysics;
         private readonly ITankEventProvider _eventProvider;
-        private readonly List<IGameEntity> _entities;
+        private readonly IReadOnlyList<IGameEntity> _entities;
 
         private bool _isActive;
         private IGameEntity _player;
@@ -26,7 +26,8 @@ namespace com.Tanks.TanksBattle.Tank.Movement.Input {
         protected float DeltaAngle { get; private set; }
         protected float DeltaForward { get; private set; }
 
-        protected TankMovementAI(TankAIMovementSettings aiSettings, ITankPhysics physicsModel, ITankEventProvider eventProvider, List<IGameEntity> entities) {
+        protected TankMovementAI(TankAIMovementSettings aiSettings, ITankPhysics physicsModel,
+            ITankEventProvider eventProvider, IReadOnlyList<IGameEntity> entities) {
             _aiSettings = aiSettings;
             _tankPhysics = physicsModel;
             _eventProvider = eventProvider;

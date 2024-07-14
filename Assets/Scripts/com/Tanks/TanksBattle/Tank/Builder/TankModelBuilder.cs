@@ -13,10 +13,10 @@ namespace com.Tanks.TanksBattle.Tank.Builder {
     abstract public class TankModelBuilder : ITankModelBuilder {
         abstract public EntityType EntityType { get; }
 
-        protected List<IGameEntity> Entities { get; }
+        protected IReadOnlyList<IGameEntity> Entities { get; }
         protected GameContext GameContext { get; }
 
-        protected TankModelBuilder(List<IGameEntity> entities, GameContext context) {
+        protected TankModelBuilder(IReadOnlyList<IGameEntity> entities, GameContext context) {
             Entities = entities;
             GameContext = context;
         }

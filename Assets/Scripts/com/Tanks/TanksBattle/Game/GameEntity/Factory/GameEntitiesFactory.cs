@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using com.Tanks.TanksBattle.Game.Data;
 using com.Tanks.TanksBattle.Game.Environment;
 using com.Tanks.TanksBattle.Game.Environment.Spawn;
 using com.Tanks.TanksBattle.Tank;
@@ -12,7 +13,7 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
 
         private GameContext _context;
         private IGameEnvironment _environment;
-        private List<IGameEntity> _entities;
+        private IReadOnlyList<IGameEntity> _entities;
         private ITankModelBuilder _playerBuilder;
         private ITankModelBuilder _enemyBuilder;
 
@@ -21,7 +22,7 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
             _positionProvider = new InitialPositionProvider(logger);
         }
 
-        public void Initialize(GameContext context, IGameEnvironment environment, List<IGameEntity> entities) {
+        public void Initialize(GameContext context, IGameEnvironment environment, IReadOnlyList<IGameEntity> entities) {
             _context = context;
             _environment = environment;
             _entities = entities;

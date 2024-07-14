@@ -35,6 +35,12 @@ namespace com.Tanks.TanksBattle.Game.GameEntity.Factory {
             return entity;
         }
 
+        public IGameEntity GetEntity(EntityData entityData) {
+            var entity = BuildEntity(entityData.Name, entityData.Type);
+            entity?.SetPosition(entityData.Position, entityData.Rotation);
+            return entity;
+        }
+
         private IGameEntity BuildEntity(string name, EntityType type) {
             switch (type) {
                 case EntityType.Player:

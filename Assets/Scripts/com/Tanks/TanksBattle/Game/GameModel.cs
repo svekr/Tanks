@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using com.Tanks.TanksBattle.Game.Data;
 using com.Tanks.TanksBattle.Game.Environment;
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Game.GameEntity.Factory;
@@ -42,6 +43,8 @@ namespace com.Tanks.TanksBattle.Game {
         }
 
         public void AddPlayer() {
+            Player ??= _entities.Find(entity => entity.Type == EntityType.Player) as ITankModel;
+            if (Player != null) return;
             var player = _entitiesFactory.GetEntity("Player", EntityType.Player);
             if (player == null) {
                 _logger?.LogError("Fail to build player");
@@ -70,6 +73,29 @@ namespace com.Tanks.TanksBattle.Game {
                 }
             }
             return result;
+        }
+
+        public GameModelData GetData() {
+            var data = new GameModelData {
+                Entities = new List<EntityData>(_entities.Count)
+            };
+            foreach (var entity in _entities) {
+                if (entity == null || entity.IsDestroyed) continue;
+                var entityData = new EntityData(entity);
+                data.Entities.Add(entityData);
+            }
+            return data;
+        }
+
+        public void SetData(GameModelData data) {
+            if (!(data?.Entities?.Count > 0)) return;
+            Reset();
+            foreach (var entityData in data.Entities) {
+                var entity = _entitiesFactory.GetEntity(entityData);
+                if (entity == null) continue;
+                _entities.Add(entity);
+            }
+            AddPlayer();
         }
     }
 }

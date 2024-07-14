@@ -2,6 +2,8 @@
     public class Managers {
         public InputManager.InputManager InputManager { get; private set; }
 
+        public GameDataManager.GameDataManager GameDataManager { get; private set; }
+
         public void SetManager<T>(T manager, bool force = false) {
             var managerType = typeof(T);
             var properties = GetType().GetProperties();

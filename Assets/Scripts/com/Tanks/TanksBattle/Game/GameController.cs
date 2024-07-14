@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using com.Tanks.TanksBattle.Game.Data;
 using com.Tanks.TanksBattle.Game.Environment;
 using com.Tanks.TanksBattle.Game.GameEntity;
 using com.Tanks.TanksBattle.Tank;
@@ -11,15 +12,17 @@ namespace com.Tanks.TanksBattle.Game {
 
         [SerializeField] private GameContext _gameContext;
         [SerializeField] private GameEnvironment _gameEnvironment;
+        [SerializeField] private float _playerRespawnDelay = 1f;
 
         private ILogger _logger;
         private int _enemiesAmount;
         private GameModel _gameModel;
 
-        public void StartGame(ILogger logger, int enemiesAmount) {
+        public void StartGame(ILogger logger, int enemiesAmount, GameModelData savedData = null) {
             _logger = logger;
             _enemiesAmount = enemiesAmount;
             SetupGameModel();
+            if (TrySetSavedData(savedData)) return;
             _gameModel.AddEnemies(enemiesAmount);
             AddPlayer();
         }
@@ -28,9 +31,21 @@ namespace com.Tanks.TanksBattle.Game {
             _gameModel?.DoUpdate(deltaTime);
         }
 
-        [ContextMenu("Restart Game")]
-        public void RestartGame() {
-            StartGame(_logger, _enemiesAmount);
+        public GameModelData GetGameModelData() {
+            return _gameModel.GetData();
+        }
+
+        private bool TrySetSavedData(GameModelData savedData) {
+            if (savedData == null) return false;
+            if (savedData.GetEntitiesCount(EntityType.Enemy) == 0) {
+                _gameModel.AddEnemies(_enemiesAmount);
+            }
+            if (savedData.GetEntitiesCount(EntityType.Player) == 0) {
+                _gameModel.AddPlayer();
+            }
+            _gameModel.SetData(savedData);
+            OnPlayerCreated?.Invoke(_gameModel.Player);
+            return true;
         }
 
         private void SetupGameModel() {
@@ -59,7 +74,7 @@ namespace com.Tanks.TanksBattle.Game {
         }
 
         private IEnumerator AddPlayerDelayed() {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_playerRespawnDelay);
             AddPlayer();
         }
     }

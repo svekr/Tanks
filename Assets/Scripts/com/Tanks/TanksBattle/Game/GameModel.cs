@@ -44,7 +44,7 @@ namespace com.Tanks.TanksBattle.Game {
 
         public void AddPlayer() {
             Player ??= _entities.Find(entity => entity.Type == EntityType.Player) as ITankModel;
-            if (Player != null) return;
+            if (Player is { IsDestroyed: false }) return;
             var player = _entitiesFactory.GetEntity("Player", EntityType.Player);
             if (player == null) {
                 _logger?.LogError("Fail to build player");

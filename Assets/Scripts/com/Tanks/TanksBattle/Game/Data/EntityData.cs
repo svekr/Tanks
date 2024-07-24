@@ -10,8 +10,6 @@ namespace com.Tanks.TanksBattle.Game.Data {
         [SerializeField] private Vector3 _position = Vector3.zero;
         [SerializeField] private Quaternion _rotation = Quaternion.identity;
 
-
-
         public EntityType Type => _type;
         public string Name => _name;
         public Vector3 Position => _position;

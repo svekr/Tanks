@@ -37,13 +37,13 @@ namespace com.Tanks.TanksBattle.Game {
 
         private bool TrySetSavedData(GameModelData savedData) {
             if (savedData == null) return false;
+            _gameModel.SetData(savedData);
             if (savedData.GetEntitiesCount(EntityType.Enemy) == 0) {
                 _gameModel.AddEnemies(_enemiesAmount);
             }
             if (savedData.GetEntitiesCount(EntityType.Player) == 0) {
                 _gameModel.AddPlayer();
             }
-            _gameModel.SetData(savedData);
             OnPlayerCreated?.Invoke(_gameModel.Player);
             return true;
         }
